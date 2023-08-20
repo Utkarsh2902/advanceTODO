@@ -1,0 +1,95 @@
+<section class="vh-100" style="background-color: #E8E8E8;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+
+            <div class="col col-xl-10" style=" border: 15px solid #f8f8f8;padding: 10px;background-color:#E8E8E8;">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body p-5">
+                        <div class="d-flex align-items-center mb-3">
+                            <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
+                            Show All Tasks
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center mb-4">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                   
+                                </div>
+                                <input type="text" class="form-control " [(ngModel)]="todoName">
+                                <div class="input-group-append">
+                                    <span class="btn btn-primary bg-success" (click)="todoAdd()">Add</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let todo of todoList; let i=index;">
+                                <div class="list-group-prepend">
+                                    <span class="input-group-text"><i class="bi bi-person-circle"></i> 
+                                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."
+                                [(ngModel)]="todo.value" (ngModelChange)="todoChange(i)" />  {{todo.content}}</span>
+                                </div>
+                               
+                               
+                                <div class="list-group-append">
+                                    <span class="btn " (click)="openModal(content,i,'todoList')"><i
+                                        class="bi bi-trash3-fill"></i></span>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- <ul class="list-group mb-0 ">
+                                <li *ngFor="let todo of todoList; let i=index;"
+                                    class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                                    <div class="d-flex align-items-center input-group ">
+                                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."
+                                            [(ngModel)]="todo.value" (ngModelChange)="todoChange(i)" />
+                                        {{todo.content}}
+                                    </div>
+                                    <a href="#!" data-mdb-toggle="tooltip" title="Remove item">
+                                        <i class="fas fa-times text-primary"></i>
+                                    </a>
+                                    <span class="btn " (click)="openModal(content,i,'todoList')"><i
+                                            class="bi bi-trash3-fill"></i></span>
+                                </li>
+                            </ul> -->
+                        <ul class="list-group mb-0" *ngIf="finishedList.length>0">
+                            <h6>Completed</h6>
+                            <li *ngFor="let todo of finishedList; let i=index;"
+                                class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
+                                <div class="d-flex align-items-center">
+                                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."
+                                        [(ngModel)]="todo.value" (ngModelChange)="afterChange(i)" />
+                                    <p>{{todo.content}}</p>
+                                </div>
+                                <a href="#!" data-mdb-toggle="tooltip" title="Remove item">
+                                    <i class="fas fa-times text-primary"></i>
+                                </a>
+                                <span class="btn" (click)="openModal(content,i,'finishedList')"><i
+                                        class="bi bi-trash3-fill"></i></span>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<ng-template #content let-modal>
+    <!-- Modal -->
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Are you really want to delete</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel Click')">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="modal.close('Ok Click')">Ok</button>
+    </div>
+</ng-template>
