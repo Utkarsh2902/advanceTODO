@@ -12,61 +12,47 @@
                         <div class="d-flex justify-content-center align-items-center mb-4">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                   
                                 </div>
-                                <input type="text" class="form-control " [(ngModel)]="todoName">
+                                <input type="text" class="form-control " [(ngModel)]="todoName"
+                                    placeholder="Add Your Task">
                                 <div class="input-group-append">
                                     <span class="btn btn-primary bg-success" (click)="todoAdd()">Add</span>
                                 </div>
                             </div>
                         </div>
                         <ul class="list-group mb-3">
-                            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let todo of todoList; let i=index;">
-                                <div class="list-group-prepend">
-                                    <span class="input-group-text"><i class="bi bi-person-circle"></i> 
-                                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."
-                                [(ngModel)]="todo.value" (ngModelChange)="todoChange(i)" />  {{todo.content}}</span>
+                            <li class="list-group-item d-flex justify-content-between align-items-center"
+                                *ngFor="let todo of todoList; let i=index;">
+                                <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."
+                                    style=" margin-left: -9px;" [(ngModel)]="todo.value"
+                                    (ngModelChange)="todoChange(i)" />
+                                <div class="list-group-prepend ml-3">
+
+                                    {{todo.content}}
                                 </div>
-                               
-                               
                                 <div class="list-group-append">
                                     <span class="btn " (click)="openModal(content,i,'todoList')"><i
-                                        class="bi bi-trash3-fill"></i></span>
+                                            class="bi bi-trash3-fill"></i></span>
                                 </div>
                             </li>
                         </ul>
-                        <!-- <ul class="list-group mb-0 ">
-                                <li *ngFor="let todo of todoList; let i=index;"
-                                    class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                                    <div class="d-flex align-items-center input-group ">
-                                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."
-                                            [(ngModel)]="todo.value" (ngModelChange)="todoChange(i)" />
-                                        {{todo.content}}
-                                    </div>
-                                    <a href="#!" data-mdb-toggle="tooltip" title="Remove item">
-                                        <i class="fas fa-times text-primary"></i>
-                                    </a>
-                                    <span class="btn " (click)="openModal(content,i,'todoList')"><i
-                                            class="bi bi-trash3-fill"></i></span>
-                                </li>
-                            </ul> -->
-                        <ul class="list-group mb-0" *ngIf="finishedList.length>0">
+                        <ul class="list-group mb-3" *ngIf="finishedList.length>0">
                             <h6>Completed</h6>
                             <li *ngFor="let todo of finishedList; let i=index;"
-                                class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
-                                <div class="d-flex align-items-center">
-                                    <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."
-                                        [(ngModel)]="todo.value" (ngModelChange)="afterChange(i)" />
-                                    <p>{{todo.content}}</p>
+                                class="list-group-item d-flex justify-content-between align-items-center">
+                                <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."
+                                    style=" margin-left: -9px;" [(ngModel)]="todo.value"
+                                    (ngModelChange)="afterChange(i)" />
+                                <div class="list-group-prepend ml-3">
+
+                                    {{todo.content}}
                                 </div>
-                                <a href="#!" data-mdb-toggle="tooltip" title="Remove item">
-                                    <i class="fas fa-times text-primary"></i>
-                                </a>
-                                <span class="btn" (click)="openModal(content,i,'finishedList')"><i
-                                        class="bi bi-trash3-fill"></i></span>
+                                <div class="list-group-append">
+                                    <span class="btn" (click)="openModal(content,i,'finishedList')"><i
+                                            class="bi bi-trash3-fill"></i></span>
+                                </div>
                             </li>
                         </ul>
-
                     </div>
                 </div>
 
